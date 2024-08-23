@@ -1,0 +1,29 @@
+
+.spotlight{
+    background: linear-gradient(to bottom, rgb(255,240,238), white);
+}
+
+.spotlight > .title{
+    margin-bottom: 30px;
+}
+
+.spotlight > .product-promo{
+    margin-top: 80px;
+    display: flex;
+    overflow: auto;
+    gap: 30px;
+}
+
+.spotlight > .product-promo > img{
+    height: 140px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.spotlight > .product-promo::-webkit-scrollbar{
+    display: none;
+}
+
+.spotlight > .product-promo > img:hover{
+    box-shadow: var(--shadow);
+}

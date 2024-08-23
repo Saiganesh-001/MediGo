@@ -1,0 +1,22 @@
+.payment-offers {
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
+  .payment-offers > div::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .payment-offers > .offers {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    gap: 30px;
+  }
+  
+  .payment-offers > .offers > img {
+    height: 80px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,75 @@
+.order-with-prescription{
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: var(--shadow-border);
+}
+
+.order-with-prescription p{
+    font-size: 15px;
+}
+
+.order-with-prescription > div {
+    padding: 20px;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.order-with-prescription > div:first-child{
+    display: flex;
+    align-items: center;
+    line-height: 30px;
+    background-color: rgb(221,241,255);
+}
+
+.order-with-prescription > div:first-child img{
+    margin: 0 30px 0 20px;
+    width: 90px;
+}
+
+.order-with-prescription > div:first-child button{
+    padding: 10px 15px;
+    margin-top: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: var(--main-color);
+}
+
+.order-with-prescription > div:first-child button i{
+    margin-right: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.order-with-prescription > div:last-child{
+    padding: 30px 20px 30px 40px;
+}
+
+.order-with-prescription > div:last-child > h4{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.order-with-prescription > div:last-child > div{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+
+.order-with-prescription > div:last-child > div > div{
+    display: flex;
+    align-items: flex-start;
+}
+
+.order-with-prescription > div:last-child > div > div > h3{
+    padding: 5px 10px;
+    background-color: rgb(235,242,255);
+    border-radius: 5px;
+    color: blue;
+    margin-right: 10px;
+}

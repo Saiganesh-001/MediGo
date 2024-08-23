@@ -1,0 +1,41 @@
+.container{
+    width: 100%;
+    padding: 40px 5%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.nav-card-layout > div{
+    display: flex;
+    gap: 50px;
+    text-align: center;
+    overflow: auto;
+    padding: 2px;
+}
+
+.nav-card-layout > div::-webkit-scrollbar{
+    display: none;
+}
+
+.nav-card-layout > div div {
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nav-card-layout > div div:hover{
+    box-shadow: lightgrey 0 0 6px;
+}
+
+.nav-card-layout>div img {
+    width: 90px;
+}
+
+.nav-card-layout > div h4{
+    font-weight: 500;
+}
+
+.nav-card-layout > div p{
+    font-size: 13px;
+    color: red;
+}

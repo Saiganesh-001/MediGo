@@ -1,0 +1,142 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-layout {
+    width: 70vw;
+    display: flex;
+    gap: 5rem;
+}
+
+.page-heading {
+    font-size: 2rem;
+}
+
+.page-heading>span {
+    font-weight: 900;
+}
+
+.product-layout {
+    position: relative;
+    z-index: -100;
+    border: 1px solid #dfe3e6;
+    border-radius: 6px;
+    display: flex;
+    gap: 2rem;
+    padding: 20px;
+    min-height: 145px;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.product-title {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 20px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    max-width: 70%;
+}
+.product-title > span{
+    color: #8897a2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.product-by {
+    color: #8897a2;
+    font-size: 14px;
+}
+
+.product-quantity {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.product-price {
+    margin-top: 2rem;
+    display: flex;
+    gap: 10px;
+}
+
+.product-mrp-price {
+    font-size: 0.7rem;
+    display: flex;
+    align-items: end;
+    gap: 4px;
+    color: #8897a2;
+}
+
+.mrp-price-strike {
+    text-decoration: line-through;
+}
+
+.price-cart {
+    display: flex;
+    gap: 20rem;
+    align-items: end;
+}
+
+.btn-cart {
+    background: #10847e;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    padding: 15px 20px;
+    font-weight: 900;
+    cursor: pointer;
+    min-width: 10rem;
+}
+
+.products-right-section {
+    margin-top: 2rem;
+    color: #4F585E;
+}
+
+.view-cart {
+    margin-top: 2rem;
+    background: #10847e;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    padding: 15px 20px;
+    font-weight: 900;
+    cursor: pointer;
+    min-width: 10rem;
+}
+
+.icon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+#heart {
+    color: grey;  
+    transition: 0.4s;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+#heart.red {
+    transition: 0.4s ease-in;
+    color: red;
+  }
+
+.availability{
+    position: absolute;
+    padding: 8px 15px;
+    color: grey;
+    border-radius: 5px;
+    right: 75px;
+    top: 16px;
+}
+
+.star{
+    font-size: 15px;
+}

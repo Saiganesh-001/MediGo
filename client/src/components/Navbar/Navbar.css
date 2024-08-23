@@ -1,0 +1,124 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: white;
+}
+
+.nav {
+    box-shadow: lightgrey 0 0 5px;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.nav>.logo {
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding-left: 6px;
+    cursor: pointer;
+}
+
+.nav>.logo>span {
+    color: #C42121;
+    padding-right: 20px;
+    border-right: solid 1px black;
+}
+
+.nav>img {
+    margin: 7px 35px;
+    height: 40px;
+}
+
+.nav>img+div {
+    width: 1px;
+    background-color: grey;
+    height: 30px;
+    margin: auto 0;
+}
+
+#pick-address {
+    margin: auto 30px;
+}
+
+#pick-address>div {
+    display: flex;
+}
+
+#pick-address>div p {
+    font-size: 13px;
+}
+
+#pick-address>h4 {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+    display: inline;
+}
+
+#pick-address>i {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.right-content {
+    margin: auto 20px auto auto;
+}
+
+.nav>ul {
+    margin: auto 20px;
+    display: flex;
+    text-decoration: none;
+    list-style: none;
+}
+
+.nav>ul li{
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.nav ul li p {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.nav ul li p:hover {
+    color: #C42121;
+}
+
+
+.navItems{
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.Cart{
+    position: relative;
+}
+
+.counter-number{
+    -webkit-border-radius: 6.5px;
+    background: #08A1A1;
+    position: absolute;
+    border-radius: 8.5px;
+    color: #ffffff;
+    font-size: 11px;
+    height: 17px;
+    line-height: 15px;
+    left: 25px;
+    text-align: center;
+    text-indent: 0px;
+    width: 20px;
+    letter-spacing: 0px;
+    top: 0;
+}

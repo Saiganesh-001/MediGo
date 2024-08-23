@@ -1,0 +1,36 @@
+.container{
+    width: 100%;
+    padding: 40px 5%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.shop-categories > .title{
+    margin-bottom: 40px;
+}
+
+.shop-categories > div{
+    display: flex;
+    text-align: center;
+    gap: 25px;
+}
+
+.shop-categories > div > div{
+    cursor: pointer;
+}
+
+.shop-categories img{
+    width: 100%;
+    border-radius: 10px 0;
+    box-shadow: var(--shadow-border);
+}
+
+.shop-categories img:hover{
+    box-shadow: var(--shadow);
+}
+
+.shop-categories h4{
+    font-weight: 500;
+    font-size: 16px;
+    margin: 10px 0;
+}

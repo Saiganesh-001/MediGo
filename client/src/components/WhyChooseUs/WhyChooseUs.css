@@ -1,0 +1,39 @@
+.why-choose-us {
+    background-color: rgb(241, 247, 255);
+    padding: 20px;
+}
+
+.why-choose-us > h1 {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.why-choose-us > div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-items: center;
+}
+
+.why-choose-us > div > div {
+    display: flex;
+    align-items: center;
+}
+
+.why-choose-us > div div > div {
+    margin-left: 20px;
+}
+
+.why-choose-us > div > div img {
+    height: 80px;
+}
+
+.why-choose-us > div > div h1 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.why-choose-us > div > div p {
+    font-size: 15px;
+    font-weight: 400;
+}
