@@ -7,8 +7,7 @@ app.use(cors());
 app.use(express.json())
 require("dotenv").config();
 
-const dbConnect = require("./config/database");
-dbConnect();
+
 
 const routes = require('./routes/product.route.js');
 app.use('/api/v1', routes);

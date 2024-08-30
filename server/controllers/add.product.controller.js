@@ -1,4 +1,4 @@
-const ProductModel = require("../model/product.js")
+const ProductModel = require("../model/product.model.js")
 
 const beautyProducts = [
     {
@@ -449,304 +449,115 @@ exports.addProducts = (req, res) => {
     }
 }
 
-exports.products = async (req, res) => {
+exports.addProduct = async (req, res) => {
     const {
-        minPrice,
-        maxPrice,
-        topProducts,
-        availability = "both",
-        sortOption,
-        orderList
-    } = req.query;
-
-
-    let query = {};
-
-    if (availability !== "both") {
-        query.availability = availability;
-    }
-
-    if (minPrice) {
-        query.productSellingPrice = { $gte: Number(minPrice) };
-    }
-
-    if (maxPrice) {
-        query.productSellingPrice = query.productSellingPrice || {};
-        query.productSellingPrice.$lte = Number(maxPrice);
-    }
-
-    // Initialize a sort object
-    let sort = {};
-
-    if (sortOption) {
-        const order = orderList === "true" ? 1 : -1;
-        switch (sortOption) {
-            case "price":
-                sort.productSellingPrice = order;
-                break;
-            case "rating":
-                sort.rating = order;
-                break;
-            case "discount":
-                sort.discount = order;
-                break;
-            default:
-                break;
-        }
-    }
+        id, category, productTitle, company, productQuantity, discount,
+        productMrpPrice, availability, rating, productSellingPrice
+    } = req.body;
 
     try {
-        let response;
-        if (topProducts) {
-            response = await ProductModel.find(query)
-                .sort(sort)
-                .limit(Number(topProducts));
-        } else {
-            response = await ProductModel.find(query).sort(sort);
-        }
-        res.status(200).json(response);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            data: "internal server error",
-            message: err.message,
-        });
-    }
-};
 
+        // // Input validation
+        // if (!id || !category || !productTitle || !company || !productQuantity || !availability ||
+        //     typeof rating !== 'number' ||
+        //     typeof discount !== 'number' ||
+        //     typeof productMrpPrice !== 'number' ||
+        //     typeof productSellingPrice !== 'number') {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: "Invalid product data. Please check the input values.",
+        //     });
+        // }
 
-exports.categoryList = async (req, res) => {
-    try {
-        const response = await ProductModel.distinct("category");
-        res.status(200).json(response);
-    } catch (err) {
-        console.error(err);
-        console.log(err);
-        res.status(500)
-            .json({
+        if (typeof id !== 'string' || id.trim() === '') {
+            return res.status(400).json({
                 success: false,
-                data: "internal server error",
-                message: err.message,
-            })
-    }
-};
-
-exports.companyList = async (req, res) => {
-    try {
-        const response = await ProductModel.distinct("company");
-        res.status(200).json(response);
-    } catch (err) {
-        console.error(err);
-        console.log(err);
-        res.status(500)
-            .json({
+                message: "Product ID must be a non-empty string.",
+            });
+        }
+        if (typeof category !== 'string' || category.trim() === '') {
+            return res.status(400).json({
                 success: false,
-                data: "internal server error",
-                message: err.message,
-            })
-    }
-};
-
-exports.category = async (req, res) => {
-    const { categoryName } = req.params;
-    const {
-        minPrice,
-        maxPrice,
-        topProducts,
-        availability = "both",
-        sortOption,
-        orderList
-    } = req.query;
-
-    // Initialize query object with category filter
-    let query = { category: categoryName };
-
-    if (availability !== "both") {
-        query.availability = availability;
-    }
-
-    if (minPrice) {
-        query.productSellingPrice = { $gte: Number(minPrice) };
-    }
-
-    if (maxPrice) {
-        query.productSellingPrice = query.productSellingPrice || {};
-        query.productSellingPrice.$lte = Number(maxPrice);
-    }
-
-    // Initialize a sort object
-    let sort = {};
-
-    if (sortOption) {
-        const order = orderList === "true" ? 1 : -1;
-        switch (sortOption) {
-            case "price":
-                sort.productSellingPrice = order;
-                break;
-            case "rating":
-                sort.rating = order;
-                break;
-            case "discount":
-                sort.discount = order;
-                break;
-            default:
-                break;
+                message: "Category must be a non-empty string.",
+            });
         }
-    }
-
-    try {
-        let response;
-        if (topProducts) {
-            response = await ProductModel.find(query)
-                .sort(sort)
-                .limit(Number(topProducts));
-        } else {
-            response = await ProductModel.find(query).sort(sort);
+        if (typeof productTitle !== 'string' || productTitle.trim() === '') {
+            return res.status(400).json({
+                success: false,
+                message: "Product title must be a non-empty string.",
+            });
         }
-        res.status(200).json(response);
+        if (typeof company !== 'string' || company.trim() === '') {
+            return res.status(400).json({
+                success: false,
+                message: "Company name must be a non-empty string.",
+            });
+        }
+        if (typeof productQuantity !== 'string' || company.trim() === '') {
+            return res.status(400).json({
+                success: false,
+                message: "Company name must be a non-empty string.",
+            });
+        }
+        if (rating < 0) {
+            return res.status(400).json({
+                success: false,
+                message: "Rating cannot be negative.",
+            });
+        }
+        if (rating > 5) {
+            return res.status(400).json({
+                success: false,
+                message: "Rating cannot be greater than 5.",
+            });
+        }
+        if (discount < 0) {
+            return res.status(400).json({
+                success: false,
+                message: "discount cannot be negative.",
+            });
+        }
+        if (productMrpPrice < 0) {
+            return res.status(400).json({
+                success: false,
+                message: "MRP Price cannot be negative.",
+            });
+        }
+        if (productSellingPrice < 0) {
+            return res.status(400).json({
+                success: false,
+                message: "Selling Price cannot be negative.",
+            });
+        }
+
+        // Ensure no duplicate ID exists
+        const existingProduct = await ProductModel.findOne({ id });
+        if (existingProduct) {
+            return res.status(400).json({
+                success: false,
+                message: "Product with this ID already exists.",
+            });
+        }
+
+
+        const response = await ProductModel.create({
+            id, category, productTitle, company, productQuantity, discount,
+            productMrpPrice, availability, rating, productSellingPrice
+        });
+
+    
+        res.status(201).json({
+            success: true,
+            message: "Product created successfully",
+        });
     } catch (err) {
-        console.error(err);
+        console.error('Error creating product:', err.message);
+
+        // Handling other types of errors (e.g., database connection errors)
         res.status(500).json({
             success: false,
-            data: "internal server error",
-            message: err.message,
+            message: "Internal Server Error",
+            error: err.message,
         });
     }
 };
-
-
-exports.company = async (req, res) => {
-    const { companyName } = req.params;
-    const {
-        minPrice,
-        maxPrice,
-        topProducts,
-        availability = "both",
-        sortOption,
-        orderList
-    } = req.query;
-
-    let query = { company: companyName };
-
-    if (availability !== "both") {
-        query.availability = availability;
-    }
-
-    if (minPrice) {
-        query.productSellingPrice = { $gte: Number(minPrice) };
-    }
-
-    if (maxPrice) {
-        query.productSellingPrice = query.productSellingPrice || {};
-        query.productSellingPrice.$lte = Number(maxPrice);
-    }
-
-    // Initialize a sort object
-    let sort = {};
-
-    if (sortOption) {
-        const order = orderList === "true" ? 1 : -1;
-        switch (sortOption) {
-            case "price":
-                sort.productSellingPrice = order;
-                break;
-            case "rating":
-                sort.rating = order;
-                break;
-            case "discount":
-                sort.discount = order;
-                break;
-            default:
-                break;
-        }
-    }
-
-    try {
-        let response;
-        if (topProducts) {
-            response = await ProductModel.find(query)
-                .sort(sort)
-                .limit(Number(topProducts));
-        } else {
-            response = await ProductModel.find(query).sort(sort);
-        }
-        res.status(200).json(response);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            data: "internal server error",
-            message: err.message,
-        });
-    }
-};
-
-
-exports.companyAndCategory = async (req, res) => {
-    const { companyName, categoryName } = req.params;
-    const {
-        minPrice,
-        maxPrice,
-        topProducts,
-        availability = "both",
-        sortOption,
-        orderList
-    } = req.query;
-
-    // Initialize query object with company and category filters
-    let query = { company: companyName, category: categoryName };
-
-    if (availability !== "both") {
-        query.availability = availability;
-    }
-
-    if (minPrice) {
-        query.productSellingPrice = { $gte: Number(minPrice) };
-    }
-
-    if (maxPrice) {
-        query.productSellingPrice = query.productSellingPrice || {};
-        query.productSellingPrice.$lte = Number(maxPrice);
-    }
-
-    // Initialize a sort object
-    let sort = {};
-
-    if (sortOption) {
-        const order = orderList === "true" ? 1 : -1;
-        switch (sortOption) {
-            case "price":
-                sort.productSellingPrice = order;
-                break;
-            case "rating":
-                sort.rating = order;
-                break;
-            case "discount":
-                sort.discount = order;
-                break;
-            default:
-                break;
-        }
-    }
-
-    try {
-        let response;
-        if (topProducts) {
-            response = await ProductModel.find(query)
-                .sort(sort)
-                .limit(Number(topProducts));
-        } else {
-            response = await ProductModel.find(query).sort(sort);
-        }
-        res.status(200).json(response);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            data: "internal server error",
-            message: err.message,
-        });
-    }
-};
-
